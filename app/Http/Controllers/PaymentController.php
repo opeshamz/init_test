@@ -36,10 +36,10 @@ class PaymentController extends Controller
 
         //dd($paymentDetails);
         if ($paymentDetails['data']['status'] = true) {
-            $order_details = Order_details::find(1);
+            $order_details = Order_details::where('payment_status', 0)->first();
             $order_details->payment_status = 1;
             $order_details->save();
-            return view('welcome')->with('thanke for payment');
+            return view('welcome');
         }
     }
 }
